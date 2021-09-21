@@ -1,0 +1,36 @@
+@using MudBlazor
+@using Microsoft.AspNetCore.Components.Rendering
+
+<div class="button-wrap theme @VariantClassName @Type">
+    @if (MudButtonEl != null)
+    {
+            @MudButtonEl
+    }
+</div>
+
+@code {
+    [Parameter] public string Variant { get; set; }
+    [Parameter] public string Type { get; set; }
+    [Parameter] public RenderFragment ChildContent { get; set; }
+    [Parameter] public RenderFragment MudButtonEl { get; set; }
+    public EventCallback OnClick { get; set; }
+    
+
+    public string VariantClassName { get; set; } = "theme";
+
+    protected override void OnInitialized()
+    {
+        if
+            (Variant != null)
+        {
+            VariantClassName = "theme--" + Variant;
+        } else
+        {
+            VariantClassName = "simple";
+        }
+        Console.WriteLine(VariantClassName);
+        base.OnInitialized();
+        
+    }
+
+}

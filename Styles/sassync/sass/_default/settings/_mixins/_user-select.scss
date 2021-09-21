@@ -1,0 +1,6 @@
+// main: _mixins.scss
+
+// User Select
+@mixin select($vars) {
+  -webkit-user-select: $vars;
+}

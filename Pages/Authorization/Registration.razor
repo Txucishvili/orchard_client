@@ -1,0 +1,138 @@
+@page "/registration"
+@using MudBlazor
+@using app.Utils
+
+
+<div class="register-page register-page--wrap">
+  <div class="form-area">
+    <BoxElement>
+      @* <div class="logo-area">
+        <img src="@SmallLogo" alt="">
+      </div> *@
+      <div class="title-area">
+        <div class="title">
+          <p>Create Account</p>
+        </div>
+      </div>
+
+      <div class="social-listing">
+        <Button Variant="custom">
+          <MudButtonEl>
+            <MudButton Size="Size.Large" Variant="Variant.Outlined" FullWidth="true">
+              Login With Google
+            </MudButton>
+          </MudButtonEl>
+        </Button>
+      </div>
+      <div class="divide-line">
+        <p class="divider">Or Sign Up With Email</p>
+      </div>
+
+
+      <FormBox>
+        <MudFormEl Context="ctx">
+
+          <div class="divide-l-25">
+            <FormField>
+              <Label>
+                <span>Full name</span>
+              </Label>
+              <MudTextFieldEl>
+                <MudTextField T="string" @bind-PlaceHolder="Email" @bind-Value="Email" Variant="Variant.Outlined"
+                  Required="true" RequiredError="Email name is required!" />
+              </MudTextFieldEl>
+            </FormField>
+            <FormField>
+              <Label>
+                <span>Email</span>
+              </Label>
+              <MudTextFieldEl>
+                <MudTextField T="string" @bind-Value="Password" Variant="Variant.Outlined" Required="true"
+                  RequiredError="Password is required!" />
+              </MudTextFieldEl>
+
+            </FormField>
+            <FormField>
+              <Label>
+                <span>Password</span>
+              </Label>
+              <MudTextFieldEl>
+                <MudTextField T="string" @bind-Value="Password" Variant="Variant.Outlined" Required="true"
+                  RequiredError="Password is required!" />
+              </MudTextFieldEl>
+
+            </FormField>
+            <FormField>
+              <Label>
+                <span>Confirm password</span>
+              </Label>
+              <MudTextFieldEl>
+                <MudTextField T="string" @bind-Value="Password" Variant="Variant.Outlined" Required="true"
+                  RequiredError="Password is required!" />
+              </MudTextFieldEl>
+
+            </FormField>
+          </div>
+
+          <div class="save-line flx">
+            <label class="checkbox-area">
+              <div class="flx _jc _ac">
+                <MudCheckBox Color="Color.Primary" @bind-Checked="@Basic_CheckBox" Required="true"></MudCheckBox>
+                <span class="label">
+                  I accept <NavLink href="terms">Terms and Conditions</NavLink>
+                </span>
+              </div>
+            </label>
+            
+          </div>
+
+
+          <div class="btn-area divide-25">
+            <Button Variant="custom" Type="bordered">
+              <MudButtonEl>
+                <MudButton DisableElevation="true" @onclick="() => OnValidate(ctx)" FullWidth="true"
+                  Variant="Variant.Filled" Color="Color.Primary">
+                  Register
+                </MudButton>
+              </MudButtonEl>
+            </Button>
+          </div>
+        </MudFormEl>
+      </FormBox>
+
+      <div class="switch-text flx _ac _jc divide-50">
+        <p> Already have an account? <NavLink href="login">Log in</NavLink>
+        </p>
+      </div>
+
+    </BoxElement>
+  </div>
+
+</div>
+
+@code {
+  public bool Basic_CheckBox { get; set; } = false;
+
+  public string NameParameter { get; set; }
+  public string SmallLogo = StaticHelpers.Getwwwroot("assets/images/logo_small.png");
+  MudForm Form;
+
+  [Parameter]
+  public RenderFragment ChildContent { get; set; }
+
+  public bool Success = false;
+  public string[] Errors = { };
+  public string Email { get; set; }
+  public string Password { get; set; }
+
+  async Task OnValidate(MudForm e)
+  {
+    Console.WriteLine("Validate");
+    await e.Validate();
+
+    if (e.IsValid)
+    {
+      Console.WriteLine("Valid");
+    }
+  }
+}

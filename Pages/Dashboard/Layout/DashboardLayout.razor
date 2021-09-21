@@ -1,0 +1,91 @@
+@inherits LayoutComponentBase
+@using MudBlazor
+
+
+<MudThemeProvider Theme="currentTheme"/>
+<MudDialogProvider/>
+<MudSnackbarProvider/>
+
+<div class="dashboard dashboard--layout dashboard--wrap">
+
+    <MudLayout>
+        <MudAppBar Elevation="0" Dense="@dense">
+            <Header></Header>
+        </MudAppBar>
+
+        <MudDrawer
+            Class="main-drawer"
+            Width="285px"
+            @bind-Open="@Open"
+            ClipMode="clipMode"
+            Elevation="0"
+            Variant="@DrawerVariant.Responsive">
+            <SideNav></SideNav>
+        </MudDrawer>
+        <MudMainContent>
+            @* <MudContainer Class="mt-6"> *@
+                <div class="mud-custom-container">
+                    <Content>
+                        <MudButton Color="Color.Inherit" OnClick="@ToggleDrawer" EndIcon="@Icons.Filled.East" Class="mx-2">Toggle right</MudButton>
+                        <MudButton Color="Color.Inherit" OnClick="@ToggleRightDrawer" EndIcon="@Icons.Filled.East" Class="mx-2">Toggle right</MudButton>
+
+                        @Body
+                    </Content>
+                </div>
+            @* </MudContainer> *@
+        </MudMainContent>
+    </MudLayout>
+
+</div>
+
+@code {
+
+    [CascadingParameter]
+    public bool Rtl { get; set; }
+
+    bool openLeft = false;
+    bool openRight = false;
+
+    void ToggleLeftDrawer()
+    {
+        openLeft = !openLeft;
+    }
+
+    void ToggleRightDrawer()
+    {
+        openRight = !openRight;
+    }
+
+    MudTheme currentTheme = new MudTheme()
+    {
+        Palette = new Palette()
+        {
+            Black = "#000000ff",
+            White = "#ffffffff",
+            Primary = "#619e1b",
+            PrimaryContrastText = "#fff",
+            Secondary = "#ff4081ff",
+            SecondaryContrastText = "#ffffffff",
+            Tertiary = "#1ec8a5ff",
+            TertiaryContrastText = "#ffffffff",
+            Info = "#2196f3ff",
+            InfoContrastText = "#ffffffff",
+            Success = "#00c853ff",
+            SuccessContrastText = "#ffffffff",
+            Warning = "#ff9800ff",
+            WarningContrastText = "#ffffffff",
+            Error = "#f44336ff",
+            ErrorContrastText = "#ffffffff"
+        }
+    };
+
+    bool Open = true;
+    bool dense = false;
+    DrawerClipMode clipMode = DrawerClipMode.Never;
+
+    void ToggleDrawer()
+    {
+        Open = !Open;
+    }
+
+}

@@ -1,0 +1,34 @@
+
+.flx {
+  display: flex;
+
+  &._jc {
+    justify-content: center;
+  }
+
+  &._ac {
+    align-items: center;
+  }
+
+  .flxR, ._fr {
+    margin-left: auto;
+  }
+}
+
+a {
+  &:link, &:visited {
+    font-family: Poppins;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: right;
+    color: var(--sap-green);
+  }
+}
+
+label, p {
+  margin: initial;
+}

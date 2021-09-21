@@ -1,0 +1,55 @@
+.label {
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  margin-bottom: 7px;
+}
+
+.form-field--wrap {
+  --mud-default-borderradius: 8px;
+
+  label, .label {
+    display: initial;
+  }
+
+  ::deep {
+
+    input {
+      z-index: 2;
+      font-family: Poppins;
+      font-size: 14px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: left;
+      color: var(--black);
+
+    }
+
+    .mud-input-outlined-border {
+      border-color: transparent;
+      background-color: var(--w-light);
+      z-index: 1;
+    }
+  }
+
+  ::deep {
+    .mud-input {
+      height: 48px;
+
+      &:hover {
+        .mud-input-outlined-border {
+          --mud-palette-action-default: var(--very-light-pink);
+          border-color: var(--very-light-pink);
+        }
+      }
+    }
+  }
+}

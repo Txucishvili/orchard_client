@@ -1,0 +1,51 @@
+@import "./variables";
+@import "./components/flex";
+@import "./components/extends";
+@import "./components/spacing-dividers";
+@import "./components/shared-root";
+
+:root {
+  --sap-green: #619e1b;
+  --brownish-grey: #636363;
+  --w-light: #f5f5f5;
+  --very-light-pink: #e8e8e8;
+  --black: #3b3b3b;
+  --brown-grey: #7a7a7a;
+}
+
+
+:root {
+  --sidenav-size: 284px;
+}
+
+
+html, body {
+  background: var(--very-light-pink);
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+}
+
+.app,
+#app {
+  width: 100%;
+  min-height: inherit;
+  height: inherit;
+}
+
+.layout {
+  &--wrapper {
+    min-height: inherit;
+    width: inherit;
+    height: inherit;
+  }
+
+  &--page {
+    &-full {
+      min-height: inherit;
+    }
+  }
+}

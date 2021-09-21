@@ -1,0 +1,81 @@
+
+.divide-line {
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 32px;
+
+  &::after,
+  &::before {
+    content: '';
+    display: block;
+    height: 1px;
+    flex: 1;
+    background-color: var(--very-light-pink);
+  }
+
+  &::before {
+    margin-right: 10px;
+  }
+
+  &::after {
+    margin-left: 10px;
+  }
+
+  p {
+    opacity: 0.7;
+    font-family: Poppins;
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: var(--brown-grey);
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+
+}
+
+
+$divider-size: (10, 15, 20, 25, 30, 35, 40, 45, 50, 55);
+
+.divide {
+  @each $size in $divider-size {
+
+    &-#{$size} {
+      margin-top: #{$size}px;
+    }
+
+  }
+}
+
+
+$divider-list-size: (10, 15, 20, 25, 30, 35, 40, 45, 50, 55);
+
+::deep {
+
+  @each $size in $divider-list-size {
+    .divide-l {
+
+      &-#{$size} {
+
+        >* {
+          margin-top: #{$size}px;
+          background-color: gray;
+
+          &:first-child {
+            margin-top: 0;
+          }
+        }
+
+      }
+
+    }
+  }
+}

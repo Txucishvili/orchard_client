@@ -1,0 +1,35 @@
+.theme {
+  ::deep {
+    button, .mud-button-root {
+      padding: 10px 25px;
+    }
+  }
+
+  &--custom {
+    --mud-palette-primary: var(--sap-green);
+    --mud-default-borderradius: 8px;
+
+    ::deep {
+      button, .mud-button-root {
+        padding: 10px 25px;
+
+        &.mud {
+          &-button {
+            &-outlined {
+              border-color: var(--very-light-pink);
+            }
+          }
+        }
+      }
+    }
+
+    &.bordered {
+      ::deep {
+        button, .mud-button-root {
+          border-bottom: 4px solid rgba(#000, .2);
+        }
+      }
+    }
+  }
+
+}

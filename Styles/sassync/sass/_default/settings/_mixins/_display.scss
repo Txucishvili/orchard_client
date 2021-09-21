@@ -1,0 +1,10 @@
+// main: _mixins.scss
+
+// User Select
+@mixin hide($var: none) {
+	display: $var;
+}
+
+@mixin show($var: block) {
+	display: $var;
+}

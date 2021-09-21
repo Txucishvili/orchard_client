@@ -1,0 +1,142 @@
+@import "../../../Styles/sassync/sass/_default/import";
+
+$auth-layout-column-bp: 1400px;
+
+.layout {
+  &--auth {
+    &--wrap {
+      background-image: url("/assets/images/cover_bg.png");
+      background-size: cover;
+      width: 100%;
+      min-height: inherit;
+      background-position: bottom center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+
+      @include max-min(max $auth-layout-column-bp) {
+        background-position-x: right;
+      }
+
+      .layout--content {
+        max-width: 1400px;
+        width: 100%;
+        overflow: hidden;
+        margin: 0 auto;
+        height: 100%;
+      }
+    }
+
+  }
+
+
+
+  .box-wrap {
+    display: flex;
+    justify-content: space-between;
+    padding: 98px 150px;
+
+    @include max-min(max $auth-layout-column-bp) {
+      flex-direction: column;
+    }
+
+    .logo-area {
+
+      @include max-min(max $auth-layout-column-bp) {
+        @include flex-all
+      }
+    }
+
+    ::deep {
+
+      .form-area {
+
+        .logo-area {
+          margin-bottom: 35px;
+          @include flex-all;
+        }
+
+        .save-line {
+          margin-top: 22px;
+
+          .mud-icon-button {
+            padding: 0;
+          }
+
+          .checkbox-area {
+
+            // margin-left: -10px;
+            .label {
+              font-family: Poppins;
+              font-size: 14px;
+              font-weight: normal;
+              font-stretch: normal;
+              font-style: normal;
+              line-height: normal;
+              letter-spacing: normal;
+              text-align: left;
+              color: var(--brownish-grey);
+              margin-left: 8px;
+            }
+          }
+        }
+      }
+
+
+
+      .title-area {
+        margin-bottom: 50px;
+
+        .title {
+          font-family: Poppins;
+          font-size: 28px;
+          font-weight: 500;
+          font-stretch: normal;
+          font-style: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          text-align: center;
+          color: var(--black);
+        }
+      }
+
+      .social-listing {
+        margin-bottom: 35px;
+      }
+
+      &.form {}
+    }
+
+    ::deep {
+      .box-wrap {
+        margin: 0 auto;
+
+        @include max-min(max 1400px) {
+          margin-top: 50px;
+        }
+      }
+    }
+
+  }
+}
+
+$divider-list-size: (10, 15, 20, 25, 30, 35, 40, 45, 50, 55);
+
+@each $size in $divider-list-size {
+  ::deep {
+    .divide-l {
+
+      &-#{$size} {
+
+        >* {
+          display: block;
+          margin-top: #{$size}px;
+
+          &:first-child {
+            margin-top: 0;
+          }
+        }
+      }
+
+    }
+  }
+}

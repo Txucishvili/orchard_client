@@ -1,0 +1,33 @@
+@using MudBlazor
+<div class="form-area form-area--form">
+    @ChildContent
+    @if (@MudFormEl != null)
+    {
+        <MudForm @ref="Form" @bind-IsValid="@Success" @bind-Errors="@Errors">
+            @MudFormEl(Form)
+        </MudForm>
+    }
+</div>
+
+@code {
+    MudForm Form;
+
+    [Parameter]
+    public bool Success { get; set; }
+
+    [Parameter]
+    public string[] Errors { get; set; }
+
+    // MudForm Form;
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public RenderFragment<MudForm> MudFormEl { get; set; }
+
+    public EventCallback OnValidate { get; set; }
+
+
+}
+

@@ -1,0 +1,11 @@
+// main: ../_style.scss
+
+// Default mixin set
+@import "settings/_mixins/mixins";
+@import "settings/_functions/functions";
+
+// Default DOM
+//@import "_theme/theme";
+
+// Librarys and plugins
+@import "lib/lib";

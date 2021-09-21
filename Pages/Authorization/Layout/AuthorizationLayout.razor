@@ -1,0 +1,79 @@
+@inherits LayoutComponentBase
+@using app.Utils
+@using MudBlazor
+
+
+<MudThemeProvider Theme="currentTheme"/>
+<MudDialogProvider/>
+<MudSnackbarProvider/>
+
+<div class="layout--page-full layout--auth layout--auth--wrap">
+    <div class="layout--content">
+        <div class="box-wrap">
+            <div class="logo-area">
+                <div class="logo">
+                    <img src="@LogoPath" alt="">
+                </div>
+            </div>
+            <div class="content-area">
+                @Body
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+@code {
+    private readonly string LogoPath = StaticHelpers.Getwwwroot("assets/images/logo.png");
+
+    MudTheme currentTheme = new MudTheme()
+    {
+        Palette = new Palette()
+        {
+            Black = "#000000ff",
+            White = "#ffffffff",
+            Primary = "#619e1b",
+            PrimaryContrastText = "#fff",
+            Secondary = "#ff4081ff",
+            SecondaryContrastText = "#ffffffff",
+            Tertiary = "#1ec8a5ff",
+            TertiaryContrastText = "#ffffffff",
+            Info = "#2196f3ff",
+            InfoContrastText = "#ffffffff",
+            Success = "#00c853ff",
+            SuccessContrastText = "#ffffffff",
+            Warning = "#ff9800ff",
+            WarningContrastText = "#ffffffff",
+            Error = "#f44336ff",
+            ErrorContrastText = "#ffffffff"
+        }
+    };
+
+        @* {
+        Palette = new Palette()
+        {
+            Black = "#27272f",
+            Background = "#32333d",
+            BackgroundGrey = "#27272f",
+            Surface = "#373740",
+            DrawerBackground = "#27272f",
+            DrawerText = "rgba(255,255,255, 0.50)",
+            DrawerIcon = "rgba(255,255,255, 0.50)",
+            AppbarBackground = "#27272f",
+            AppbarText = "rgba(255,255,255, 0.70)",
+            TextPrimary = "rgba(255,255,255, 0.70)",
+            TextSecondary = "rgba(255,255,255, 0.50)",
+            ActionDefault = "#adadb1",
+            ActionDisabled = "rgba(255,255,255, 0.26)",
+            ActionDisabledBackground = "rgba(255,255,255, 0.12)",
+            Divider = "rgba(255,255,255, 0.12)",
+            DividerLight = "rgba(255,255,255, 0.06)",
+            TableLines = "rgba(255,255,255, 0.12)",
+            LinesDefault = "rgba(255,255,255, 0.12)",
+            LinesInputs = "rgba(255,255,255, 0.3)",
+            TextDisabled = "rgba(255,255,255, 0.2)"
+        }
+    }; *@
+
+}
