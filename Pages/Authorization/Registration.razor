@@ -1,138 +1,419 @@
 @page "/registration"
 @using MudBlazor
 @using app.Utils
+@using System.ComponentModel.DataAnnotations
 
 
 <div class="register-page register-page--wrap">
-  <div class="form-area">
-    <BoxElement>
-      @* <div class="logo-area">
+<div class="form-area">
+<BoxElement>
+@* <div class="logo-area">
         <img src="@SmallLogo" alt="">
       </div> *@
-      <div class="title-area">
-        <div class="title">
-          <p>Create Account</p>
-        </div>
-      </div>
+<div class="title-area">
+    <div class="title">
+        <p>Create Account</p>
+    </div>
+</div>
 
-      <div class="social-listing">
-        <Button Variant="custom">
-          <MudButtonEl>
+<div class="social-listing">
+    <Button Variant="custom">
+        <MudButtonEl>
             <MudButton Size="Size.Large" Variant="Variant.Outlined" FullWidth="true">
-              Login With Google
+                Login With Google
             </MudButton>
-          </MudButtonEl>
-        </Button>
-      </div>
-      <div class="divide-line">
-        <p class="divider">Or Sign Up With Email</p>
-      </div>
+        </MudButtonEl>
+    </Button>
+</div>
+<div class="divide-line">
+    <p class="divider">Or Sign Up With Email</p>
+</div>
 
 
-      <FormBox>
-        <MudFormEl Context="ctx">
+<FormBox>
+<MudFormEl Context="ctxs">
+<div class="divide-l-25">
+    <FormField>
+        <Label>
+            <span>First name</span>
+        </Label>
+        <MudTextFieldEl>
+            <MudTextField T="string" @bind-PlaceHolder="Email" @bind-Value="Email" Variant="Variant.Outlined"
+                          Required="true" RequiredError="Email name is required!"/>
+        </MudTextFieldEl>
+    </FormField>
+    <FormField>
+        <Label>
+            <span>Last name</span>
+        </Label>
+        <MudTextFieldEl>
+            <MudTextField T="string" @bind-PlaceHolder="Email" @bind-Value="Email" Variant="Variant.Outlined"
+                          Required="true" RequiredError="Email name is required!"/>
+        </MudTextFieldEl>
+    </FormField>
 
-          <div class="divide-l-25">
-            <FormField>
-              <Label>
-                <span>Full name</span>
-              </Label>
-              <MudTextFieldEl>
-                <MudTextField T="string" @bind-PlaceHolder="Email" @bind-Value="Email" Variant="Variant.Outlined"
-                  Required="true" RequiredError="Email name is required!" />
-              </MudTextFieldEl>
-            </FormField>
-            <FormField>
-              <Label>
-                <span>Email</span>
-              </Label>
-              <MudTextFieldEl>
-                <MudTextField T="string" @bind-Value="Password" Variant="Variant.Outlined" Required="true"
-                  RequiredError="Password is required!" />
-              </MudTextFieldEl>
+    <FormField>
+        <Label>
+            <span>Date of birth</span>
+        </Label>
+        <MudTextFieldEl>
+            <MudDatePicker Variant="Variant.Outlined" @ref="_picker" @bind-Date="date" AutoClose="@autoClose">
+                <PickerActions>
+                    <MudButton Class="mr-auto align-self-start" OnClick="@(() => _picker.Clear())">Clear</MudButton>
+                    <MudButton OnClick="@(() => _picker.Close(false))">Cancel</MudButton>
+                    <MudButton Color="Color.Primary" OnClick="@(() => _picker.Close())">Ok</MudButton>
+                </PickerActions>
+            </MudDatePicker>
+        </MudTextFieldEl>
+    </FormField>
 
-            </FormField>
-            <FormField>
-              <Label>
-                <span>Password</span>
-              </Label>
-              <MudTextFieldEl>
-                <MudTextField T="string" @bind-Value="Password" Variant="Variant.Outlined" Required="true"
-                  RequiredError="Password is required!" />
-              </MudTextFieldEl>
+    <FormField>
+        <Label>
+            <span>Email</span>
+        </Label>
+        <MudTextFieldEl>
+            <MudTextField T="string" @bind-PlaceHolder="Email" @bind-Value="Email" Variant="Variant.Outlined"
+                          Required="true" RequiredError="Email name is required!"/>
+        </MudTextFieldEl>
+    </FormField>
+    <FormField>
+        <Label>
+            <span>Phone</span>
+        </Label>
+        <MudTextFieldEl>
+            <MudTextField T="string" @bind-PlaceHolder="Email" @bind-Value="Email" Variant="Variant.Outlined"
+                          Required="true" RequiredError="Email name is required!"/>
+        </MudTextFieldEl>
+    </FormField>
+    <FormField>
+        <Label>
+            <span>Identity</span>
+        </Label>
+        <MudTextFieldEl>
+            <MudTextField T="string" @bind-PlaceHolder="Email" @bind-Value="Email" Variant="Variant.Outlined"
+                          Required="true" RequiredError="Email name is required!"/>
+        </MudTextFieldEl>
+    </FormField>
+    <FormField>
+        <Label>
+            <span>Password</span>
+        </Label>
+        <MudTextFieldEl>
+            <MudTextField T="string" @bind-PlaceHolder="Email" @bind-Value="Email" Variant="Variant.Outlined"
+                          Required="true" RequiredError="Email name is required!"/>
+        </MudTextFieldEl>
+    </FormField>
+    <FormField>
+        <Label>
+            <span>Confirm password</span>
+        </Label>
+        <MudTextFieldEl>
+            <MudTextField T="string" @bind-PlaceHolder="Email" @bind-Value="Email" Variant="Variant.Outlined"
+                          Required="true" RequiredError="Email name is required!"/>
+        </MudTextFieldEl>
+    </FormField>
+    @* ----- SELECTS *@
 
-            </FormField>
-            <FormField>
-              <Label>
-                <span>Confirm password</span>
-              </Label>
-              <MudTextFieldEl>
-                <MudTextField T="string" @bind-Value="Password" Variant="Variant.Outlined" Required="true"
-                  RequiredError="Password is required!" />
-              </MudTextFieldEl>
+    <FormField>
+        <Label>
+            <span>Country</span>
+        </Label>
+        <MudTextFieldEl>
+            <MudSelect Required="true" RequiredError="is required!" Elevation="0" @bind-Value="@country" IsPreRendered="true" Variant="Variant.Outlined" OffsetY="true">
+                <MudSelectItem Value="@("")">
+                    <p>Choose country</p>
+                </MudSelectItem>
+                <MudSelectItem Value="@("Afghanistan")">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Afghanistan.svg" height="14" class="mr-1"/> Afghanistan
+                </MudSelectItem>
+                <MudSelectItem Value="@("Australia")">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/Flag_of_Australia_%28converted%29.svg" height="14" class="mr-1"/> Australia
+                </MudSelectItem>
+                <MudSelectItem Value="@("Austria")">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Flag_of_Austria.svg" height="14" class="mr-1"/> Austria
+                </MudSelectItem>
+            </MudSelect>
+        </MudTextFieldEl>
 
-            </FormField>
-          </div>
+    </FormField>
 
-          <div class="save-line flx">
-            <label class="checkbox-area">
-              <div class="flx _jc _ac">
-                <MudCheckBox Color="Color.Primary" @bind-Checked="@Basic_CheckBox" Required="true"></MudCheckBox>
-                <span class="label">
-                  I accept <NavLink href="terms">Terms and Conditions</NavLink>
-                </span>
-              </div>
-            </label>
-            
-          </div>
+    <FormField>
+        <Label>
+            <span>State</span>
+        </Label>
+        <MudTextFieldEl>
+            <MudSelect Elevation="0" @bind-Value="@country" IsPreRendered="true" Variant="Variant.Outlined" OffsetY="true">
+                <MudSelectItem Value="@("Afghanistan")">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Afghanistan.svg" height="14" class="mr-1"/> Afghanistan
+                </MudSelectItem>
+                <MudSelectItem Value="@("Australia")">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/Flag_of_Australia_%28converted%29.svg" height="14" class="mr-1"/> Australia
+                </MudSelectItem>
+                <MudSelectItem Value="@("Austria")">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Flag_of_Austria.svg" height="14" class="mr-1"/> Austria
+                </MudSelectItem>
+            </MudSelect>
+        </MudTextFieldEl>
+
+    </FormField>
+
+    <FormField>
+        <Label>
+            <span>City</span>
+        </Label>
+        <MudTextFieldEl>
+            <MudSelect Elevation="0" @bind-Value="@country" IsPreRendered="true" Variant="Variant.Outlined" OffsetY="true">
+                <MudSelectItem Value="@("Afghanistan")">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Afghanistan.svg" height="14" class="mr-1"/> Afghanistan
+                </MudSelectItem>
+                <MudSelectItem Value="@("Australia")">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/Flag_of_Australia_%28converted%29.svg" height="14" class="mr-1"/> Australia
+                </MudSelectItem>
+                <MudSelectItem Value="@("Austria")">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Flag_of_Austria.svg" height="14" class="mr-1"/> Austria
+                </MudSelectItem>
+            </MudSelect>
+        </MudTextFieldEl>
+
+    </FormField>
+</div>
+
+@if (false)
+{
+    <EditForm Model="userModel" OnValidSubmit="CreateUser">
+        <DataAnnotationsValidator/>
+
+        <FormField>
+            <label for="@userModel.Email">Email</label>
+            <div>
+                <InputText @bind-Value="@userModel.Email"></InputText>
+                <ValidationMessage For="@(() => userModel.Email)"/>
+            </div>
+        </FormField>
+        <FormField>
+            <label for="@userModel.Password">Password</label>
+            <div>
+                <InputText @bind-Value="@userModel.Password"></InputText>
+                <ValidationMessage For="@(() => userModel.Password)"/>
+            </div>
+        </FormField>
+        <FormField>
+            <label for="@userModel.FirstName">FirstName</label>
+            <div>
+                <InputText @bind-Value="@userModel.FirstName"></InputText>
+                <ValidationMessage For="@(() => userModel.FirstName)"/>
+            </div>
+        </FormField>
+        <FormField>
+            <label for="@userModel.LastName">LastName</label>
+            <div>
+                <InputText @bind-Value="@userModel.LastName"></InputText>
+                <ValidationMessage For="@(() => userModel.LastName)"/>
+            </div>
+        </FormField>
+        <FormField>
+            <label for="@userModel.Phone">Phone</label>
+            <div>
+                <InputText @bind-Value="@userModel.Phone"></InputText>
+                <ValidationMessage For="@(() => userModel.Phone)"/>
+            </div>
+        </FormField>
+        <FormField>
+            <label for="@userModel.IdentityNumber">Identity</label>
+            <div>
+                <InputText @bind-Value="@userModel.IdentityNumber"></InputText>
+                <ValidationMessage For="@(() => userModel.IdentityNumber)"/>
+            </div>
+        </FormField>
+        @* <div> *@
+        @*     <select name="CountryId" id="" @onchange="GetStates"> *@
+        @*         <option >Choose Country</option> *@
+        @*         @foreach (var c in countries) *@
+        @*         { *@
+        @*             <option value="@c.Id">@c.Name</option> *@
+        @*         } *@
+        @*     </select> *@
+        @* </div> *@
+        @* <div> *@
+        @*     <select name="StateId" id="" @onchange="GetCities"> *@
+        @*         <option >Choose State</option> *@
+        @*         @foreach (var s in states) *@
+        @*         { *@
+        @*             <option value="@s.Id">@s.Name</option> *@
+        @*         } *@
+        @*     </select> *@
+        @* </div> *@
+        @*         <div> *@
+        @*             <select name="CityId" id="" @onchange="SetCity"> *@
+        @*                 <option >Choose City</option> *@
+        @*                 @foreach (var c in cities) *@
+        @*                 { *@
+        @*                     <option value="@c.Id">@c.Name</option> *@
+        @*                 } *@
+        @*             </select> *@
+        @*         </div> *@
+        <div>
+            <input type="date" @bind="@userModel.DateOfBirth" name="DateOfBirth"/>
+        </div>
+        <button type="submit">Register</button>
+    </EditForm>
+}
+<div class="save-line flx">
+    <label class="checkbox-area">
+        <div class="flx _jc _ac">
+            <MudCheckBox Color="Color.Primary" @bind-Checked="@Basic_CheckBox" Required="true"></MudCheckBox>
+            <span class="label">
+                I accept <NavLink href="terms">Terms and Conditions</NavLink>
+            </span>
+        </div>
+    </label>
+
+</div>
 
 
-          <div class="btn-area divide-25">
-            <Button Variant="custom" Type="bordered">
-              <MudButtonEl>
-                <MudButton DisableElevation="true" @onclick="() => OnValidate(ctx)" FullWidth="true"
-                  Variant="Variant.Filled" Color="Color.Primary">
-                  Register
-                </MudButton>
-              </MudButtonEl>
-            </Button>
-          </div>
-        </MudFormEl>
-      </FormBox>
+<div class="btn-area divide-25">
+    <Button Variant="custom" Type="bordered">
+        <MudButtonEl>
+            <MudButton DisableElevation="true" @onclick="() => OnValidate(ctxs)" FullWidth="true"
+                       Variant="Variant.Filled" Color="Color.Primary">
+                Register
+            </MudButton>
+        </MudButtonEl>
+    </Button>
+</div>
+</MudFormEl>
 
-      <div class="switch-text flx _ac _jc divide-50">
-        <p> Already have an account? <NavLink href="login">Log in</NavLink>
-        </p>
-      </div>
+</FormBox>
 
-    </BoxElement>
-  </div>
+<div class="switch-text flx _ac _jc divide-50">
+    <p>
+        Already have an account? <NavLink href="login">Log in</NavLink>
+    </p>
+</div>
+
+</BoxElement>
+</div>
 
 </div>
 
 @code {
-  public bool Basic_CheckBox { get; set; } = false;
+    string country = "";
+    MudDatePicker _picker;
+    DateTime? date = DateTime.Today;
+    private bool autoClose = true;
+    private bool readOnly;
 
-  public string NameParameter { get; set; }
-  public string SmallLogo = StaticHelpers.Getwwwroot("assets/images/logo_small.png");
-  MudForm Form;
-
-  [Parameter]
-  public RenderFragment ChildContent { get; set; }
-
-  public bool Success = false;
-  public string[] Errors = { };
-  public string Email { get; set; }
-  public string Password { get; set; }
-
-  async Task OnValidate(MudForm e)
-  {
-    Console.WriteLine("Validate");
-    await e.Validate();
-
-    if (e.IsValid)
+    public class RegisterUserModel
     {
-      Console.WriteLine("Valid");
+        [Required]
+        public string FirstName { get; set; }
+
+        [Required]
+        public string LastName { get; set; }
+
+        [Required]
+        public string Email { get; set; }
+
+        [Required]
+        public string Password { get; set; }
+
+        [Required]
+        public string Phone { get; set; }
+
+        [Required]
+        public string IdentityNumber { get; set; }
+
+        [Required]
+        public DateTime DateOfBirth { get; set; }
+
+        [Required]
+        public Guid CountryId { get; set; }
+
+        [Required]
+        public Guid StateId { get; set; }
+
+        [Required]
+        public Guid CityId { get; set; }
     }
-  }
+
+    public bool Basic_CheckBox { get; set; } = false;
+
+    public string NameParameter { get; set; }
+    public string SmallLogo = StaticHelpers.Getwwwroot("assets/images/logo_small.png");
+    MudForm Form;
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    public bool Success = false;
+    public string[] Errors = {};
+    public string Email { get; set; }
+    public string Password { get; set; }
+
+    async Task OnValidate(MudForm e)
+    {
+        Console.WriteLine("Validate");
+        await e.Validate();
+
+        if (e.IsValid)
+        {
+            Console.WriteLine("Valid");
+        }
+    }
+
+
+    async Task OnValidates()
+    {
+        Console.WriteLine("Validate");
+    }
+
+
+    // ROOT
+
+
+    private RegisterUserModel userModel = new RegisterUserModel();
+
+    private async Task CreateUser(EditContext editContext)
+    {
+        var validate = editContext.Validate();
+    // if (validate)
+    // {
+    //     var result = await _userService.RegisterUser(userModel);
+    //     if (result.Success)
+    //     {
+    //         Console.WriteLine("Done");
+    //     }
+    //     
+    //     Console.WriteLine(result);
+    // }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+    // var c = await _coordinatesService.GetAllCountries();
+    // countries = c.Data;
+    }
+
+    private async Task GetStates(ChangeEventArgs e)
+    {
+    // var id = Guid.Parse(e.Value.ToString());
+    // var statesFromBase = await _coordinatesService.GetStatesByCountryId(id);
+    // states = statesFromBase.Data;
+    // userModel.CountryId = id;
+    }
+
+    private async Task GetCities(ChangeEventArgs e)
+    {
+    // var id = Guid.Parse(e.Value.ToString());
+    // var citiesFromBase = await _coordinatesService.GetCitiesByStateId(id);
+    // cities = citiesFromBase.Data;
+    // userModel.StateId = id;
+    }
+
+    private async Task SetCity(ChangeEventArgs e)
+    {
+        var id = Guid.Parse(e.Value.ToString());
+        userModel.CityId = id;
+    }
+
 }

@@ -13,11 +13,19 @@
 .form-field--wrap {
   --mud-default-borderradius: 8px;
 
+
   label, .label {
     display: initial;
   }
 
   ::deep {
+    .mud-input {
+      > * {
+        &:not(.mud-input-outlined-border) {
+          z-index: 1;
+        }
+      }
+    }
 
     input {
       z-index: 2;
@@ -30,13 +38,22 @@
       letter-spacing: normal;
       text-align: left;
       color: var(--black);
-
     }
 
     .mud-input-outlined-border {
       border-color: transparent;
       background-color: var(--w-light);
-      z-index: 1;
+      z-index: 0;
+    }
+
+    .mud-select {
+
+      div:not(.mud-input-outlined-border) {
+        z-index: 1;
+      }
+
+      .mud-input-outlined-border {
+      }
     }
   }
 

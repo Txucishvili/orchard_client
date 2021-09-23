@@ -2,7 +2,7 @@
 <div class="form-field--wrap">
     @if (Type == "Checkbox")
     {
-        <label>
+        <div>
             @if (Label != null)
             {
                 <div class="label">
@@ -14,9 +14,9 @@
                 @MudTextFieldEl
             }
             @ChildContent
-        </label>
+        </div>
     } else {
-    <label>
+    <div>
         @if (Label != null)
         {
             <div class="label">
@@ -27,8 +27,12 @@
         {
             @MudTextFieldEl
         }
+        else
+        {
+            
+        }
         @ChildContent
-    </label>
+    </div>
     }
 </div>
 
@@ -44,6 +48,6 @@
     public RenderFragment Label { get; set; }
 
     [Parameter]
-    public RenderFragment MudTextFieldEl { get; set; }
+    public RenderFragment? MudTextFieldEl { get; set; }
 
 }

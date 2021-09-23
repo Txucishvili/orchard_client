@@ -13,14 +13,26 @@
             <Header></Header>
         </MudAppBar>
 
+        
         <MudDrawer
+            Variant="@DrawerVariant.Mini" 
             Class="main-drawer"
-            Width="285px"
             @bind-Open="@Open"
             ClipMode="clipMode"
-            Elevation="0"
-            Variant="@DrawerVariant.Responsive">
+            Elevation="0">
             <SideNav></SideNav>
+        </MudDrawer>
+        
+        
+        <MudDrawer Width="400px" @bind-Open="@openRight" Fixed="true" Anchor="Anchor.Right" Elevation="3" DisableOverlay="true" Variant="@DrawerVariant.Temporary">
+                    <MudDrawerHeader>
+                        <MudText Typo="Typo.h6">Settings</MudText>
+                    </MudDrawerHeader>
+        <MudNavMenu>
+            <MudNavLink Match="NavLinkMatch.All" Icon="@Icons.Filled.AccountBox">Profile</MudNavLink>
+            <MudNavLink Match="NavLinkMatch.All" Icon="@Icons.Filled.ShoppingCart">Orders</MudNavLink>
+            <MudNavLink Match="NavLinkMatch.All" Icon="@Icons.Filled.History">Order History</MudNavLink>
+        </MudNavMenu>
         </MudDrawer>
         <MudMainContent>
             @* <MudContainer Class="mt-6"> *@

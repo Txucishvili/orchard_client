@@ -1,94 +1,3 @@
-.dashboardx {
-  &--layout {
-  }
-
-  &--wrap {
-  }
-
-  ::deep {
-
-    .mud-layout {
-      background-color: var(--very-light-pink);
-      --mud-palette-drawer-background: var(--very-light-pink);
-
-      aside.mud-drawer {
-        animation: none !important;
-        white-space: nowrap;
-
-        &-initial {
-          animation: none;
-        }
-
-        &--open {
-          // width: 320px;
-          &.mud-drawer-pos-left {
-            left: 0;
-          }
-        }
-
-        &--closed {
-          width: 50px;
-
-          &.mud-drawer-pos-left {
-            left: 0;
-          }
-        }
-      }
-
-      .mud-appbar {
-        transition: all 225ms cubic-bezier(0, 0, .2, 1) 0ms;
-        --mud-palette-appbar-background: var(--very-light-pink);
-      }
-
-
-      .mud {
-        &-custom {
-          &-container {
-            width: 100%;
-            display: block;
-            box-sizing: border-box;
-            margin-left: auto;
-            margin-right: auto;
-            height: 100%;
-            padding: 24px 41px 282px 24px;
-            border-top-left-radius: 8px;
-            box-shadow: -2px 2px 1px 0 rgba(0, 0, 0, 0.03);
-            background-color: #fff;
-          }
-        }
-
-        &-main {
-          &-content {
-            // overflow-x: hidden;
-            display: flex;
-            min-height: 100%;
-            flex-direction: column;
-            height: 100vh;
-          }
-        }
-      }
-
-
-      &[class*=open] {
-        .mud-appbar {
-          left: 0;
-        }
-      }
-
-      &[class*=close] {
-        .mud-appbar {
-          left: 70px;
-        }
-
-        .mud-main-content {
-          margin-left: 70px;
-        }
-      }
-    }
-  }
-}
-
-
 $closed-size: 56px;
 
 .dashboard {
@@ -100,11 +9,29 @@ $closed-size: 56px;
 
   ::deep {
 
+
     .mud {
       &-appbar {
         transition: all 225ms cubic-bezier(0, 0, .2, 1) 0ms;
         --mud-palette-appbar-background: var(--very-light-pink);
+
+        .mud-toolbar-gutters {
+          padding: 0;
+        }
+
+        > div {
+          &::before {
+            content: '';
+            display: block;
+            height: 100%;
+            width: 4px;
+            background: #e8e8e8;
+            left: -4px;
+            position: absolute;
+          }
+        }
       }
+
 
       &-custom {
         &-container {
@@ -118,6 +45,7 @@ $closed-size: 56px;
           border-top-left-radius: 8px;
           box-shadow: -2px 2px 1px 0 rgba(0, 0, 0, 0.03);
           background-color: #fff;
+          flex: 1 0 auto;
         }
       }
 
@@ -139,9 +67,13 @@ $closed-size: 56px;
         .main-drawer {
           --mud-palette-drawer-background: transparent;
 
-          
+
           &.mud {
-            &-drawer {
+
+            // disabled for MudBlazor Minimized Views
+            // remove "_"
+
+            &-drawer_ {
               animation: none;
               left: 0;
               white-space: nowrap;
@@ -181,14 +113,16 @@ $closed-size: 56px;
           }
         }
 
+        // disabled for MudBlazor Minimized Views
+        // remove "_"
 
-        &[class*=open] {
+        &[class*=open_] {
           .mud-appbar {
             left: 0;
           }
         }
 
-        &[class*=close] {
+        &[class*=close_] {
           .mud-appbar {
             left: $closed-size;
           }
